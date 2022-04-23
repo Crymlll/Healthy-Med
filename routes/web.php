@@ -15,15 +15,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', [HomeController::class, 'index'])->middleware('auth');
 
-Route::get('/', [UserController::class, 'loginView'])->name('loginrollback')->middleware('guest'); //cek di middleware.authenticate
+Route::get('/login', [UserController::class, 'loginView'])->name('loginrollback')->middleware('guest'); //cek di middleware.authenticate
 Route::post('/login', [UserController::class, 'loginLauncher']);
 Route::post('/logout', [UserController::class, 'logout']);
-
-
 
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 Route::post('/register', [UserController::class, 'store']);
 
-
-Route::get('/home', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/article/create', [ArticleController::class, 'create'])->middleware('auth');
+Route::post('/article/create', [ArticleController::class, 'store'])->middleware('auth');

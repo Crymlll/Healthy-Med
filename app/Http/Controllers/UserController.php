@@ -10,7 +10,12 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function loginView(){
-        return view('user.login');
+        if(!session()->has('url.intended'))
+    {
+        session(['url.intended' => url()->previous()]);
+    }
+            return view('user.login');
+        
     }
 
     public function loginLauncher(Request $request){
@@ -24,7 +29,7 @@ class UserController extends Controller
         // KALAU BERHASIL
         if(Auth::attempt($otentikasi)){
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            return redirect()->intended('/');
         }
 
         return back();

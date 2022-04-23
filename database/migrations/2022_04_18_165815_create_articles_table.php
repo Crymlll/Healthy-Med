@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('topic');
             $table->string('judul');
             $table->string('isi');
-            $table->timestamp('date');
             $table->integer('total_like')->nullable();
+            $table->string('gambar');
             $table->timestamps();
         });
     }

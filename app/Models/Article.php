@@ -10,7 +10,7 @@ class Article extends Model
     use HasFactory;
 
     protected $table = 'articles';
-    protected $fillable = ['topic','judul','isi','date','total_like','user_id'];
+    protected $fillable = ['topic','judul','isi','total_like','user_id', 'gambar'];
 
     protected $guarded=['id'];
 
