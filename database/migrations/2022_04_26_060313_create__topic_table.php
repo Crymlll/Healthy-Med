@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('articles', function (Blueprint $table) {
-            $table->id()->unique();
-            $table->foreignId('user_id');
-            // $table->string('topic');
-            $table->string('judul');
-            $table->string('isi');
-            $table->integer('total_like')->nullable();
-            $table->string('gambar');
+        Schema::create('topic', function (Blueprint $table) {
+            $table->string('article_id');
+            $table->string('healthy');
+            $table->string('sports');
+            $table->string('politics');
+            $table->string('entertainment');
+            $table->string('technology');
+            $table->string('science');
+
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('_topic');
     }
 };

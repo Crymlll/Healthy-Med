@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Like;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -10,8 +11,26 @@ class HomeController extends Controller
     public function index(){
 
         $data = Article::latest()->simplepaginate(5);
+        // $like = Like::where('article_id', $data->id)->count();
+        foreach($data as $d){
+            $like = Like::where('article_id', $d->id)->count();
+            $d->total_like = $like;
+            $likeCheck = Like::where('article_id', $d->id)->where('user_id',auth()->user()->id)->first();
+            if($likeCheck){
+                $d->status_like = "Sudah like";
+
+            }
+            else{
+                $d->status_like = "Belum like";
+            }
+        
+        }
+
+        
+
         $title="Home";
         $id_latest = Article::latest()->first();
+        
 
         if($id_latest == null){
             return view('home.index', compact('data','title'));

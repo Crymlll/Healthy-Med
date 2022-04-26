@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Like;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -33,7 +34,7 @@ class ArticleController extends Controller
 
         $data_artikel = array(
             'user_id' => $id,
-            'topic' => $request->topic,
+            // 'topic' => $request->topic,
             'judul' => $request->judul,
             'isi' => $request->isi,
             'total_like' => 0,
@@ -57,8 +58,13 @@ class ArticleController extends Controller
         $data = Article::find($id);
         $getEx = $data->gambar;
         $ext = substr($getEx, strpos($getEx, ".") + 1);
+
         
-        return view('preview', compact('data','title','ext'));
+        $like = Like::where('article_id',$id)->count();
+        
+        $data->total_like = $like;
+        
+        return view('article.detail', compact('data','title','ext','like'));
     }
 
     public function edit($id)
@@ -123,4 +129,8 @@ class ArticleController extends Controller
         $title = 'search';
         return view('search', compact('data','title','search_text'));
     }
+
+    // public function komentar(){
+    //     $artikel = Article::
+    // }
 }

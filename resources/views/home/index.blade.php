@@ -14,8 +14,11 @@
         <div class="keterangan">
             <p>{{ $item->gambar }}</p>
                 <p>Waktu : {{ $item->created_at->format('d-m-Y H:i:s') }}</p>
-                <a href="/preview/{{ $item->id }}">Lihat Selengkapnya ></a>
+                <a href="/article/id/{{ $item->id }}">Lihat Selengkapnya ></a>
         </div>
+        <a href='/like/{{ $item->id }}' >Like : {{ $item->total_like }}</a>
+        <p>{{ $item->status_like }}</p>
+        
         <hr>
     </div>
 @endforeach
