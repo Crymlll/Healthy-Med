@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('topic', function (Blueprint $table) {
+        Schema::create('topics', function (Blueprint $table) {
+            $table->id()->unique();
             $table->string('article_id');
-            $table->string('healthy');
-            $table->string('sports');
-            $table->string('politics');
-            $table->string('entertainment');
-            $table->string('technology');
-            $table->string('science');
+            $table->boolean('healthy')->default(false);
+            $table->boolean('sports')->default(false);
+            $table->boolean('politics')->default(false);
+            $table->boolean('entertainment')->default(false);
+            $table->boolean('technology')->default(false);
+            $table->boolean('science')->default(false);
 
             $table->timestamps();
         });
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('_topic');
+        Schema::dropIfExists('topics');
     }
 };

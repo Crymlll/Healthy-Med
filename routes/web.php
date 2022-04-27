@@ -28,5 +28,10 @@ Route::post('/register', [UserController::class, 'store']);
 Route::get('/article/create', [ArticleController::class, 'create'])->middleware('auth');
 Route::post('/article/create', [ArticleController::class, 'store'])->middleware('auth');
 Route::get('/article/id/{id}', [ArticleController::class, 'show'])->middleware('auth');
+Route::get('/article/edit/id/{id}', [ArticleController::class, 'edit'])->middleware('auth');
+Route::post('/article/edit/id/{id}', [ArticleController::class, 'update'])->middleware('auth');
+Route::get('/article/delete/id/{id}', [ArticleController::class, 'destroy'])->middleware('auth');
 
 Route::get('/like/{article_id}', [LikeController::class, 'like'])->middleware('auth');
+
+Route::get('/komentar/send/{article_id}', [ArticleController::class, 'komentar'])->middleware('auth');

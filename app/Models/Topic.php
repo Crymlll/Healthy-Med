@@ -9,7 +9,17 @@ class Topic extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['article_id',  'healthy', 'sports', 'politics', 'entertainment', 'technology', 'science'];
+    protected $fillable = [
+        'article_id',   
+        'healthy', 
+        'sports', 
+        'politics', 
+        'entertainment', 
+        'technology', 
+        'science'
+    ];
+
+    protected $guarded=['id'];
 
     public function article()
     {

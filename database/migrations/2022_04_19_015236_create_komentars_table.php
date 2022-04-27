@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('article_id');
             $table->foreignId('user_id');
             $table->string('komentar');
-            $table->timestamp('date');
             $table->timestamps();
         });
     }

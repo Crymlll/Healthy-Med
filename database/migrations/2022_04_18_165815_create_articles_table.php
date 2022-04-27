@@ -19,7 +19,7 @@ return new class extends Migration
             // $table->string('topic');
             $table->string('judul');
             $table->string('isi');
-            $table->integer('total_like')->nullable();
+            // $table->integer('total_like')->nullable();
             $table->string('gambar');
             $table->timestamps();
         });
