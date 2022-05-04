@@ -47,6 +47,7 @@
 
 @if($komentar)
     @foreach($komen as $komentar)
+        <p>{{ $komen->userNama }}</p>
         <p>{{ $komen->isi }}</p>
     @endforeach
 @endif

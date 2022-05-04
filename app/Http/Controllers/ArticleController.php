@@ -86,6 +86,10 @@ class ArticleController extends Controller
         $getEx = $data->gambar;
         $ext = substr($getEx, strpos($getEx, ".") + 1);
         $komentar = Komentar::where('user_id', $id)->get();
+        for ($i=0; $i < count($komentar); $i++) { 
+            $komentar[$i]->user = User::find($komentar[$i]->user_id);
+            $komentar[$i]->userNama = $komentar[$i]->user->name;
+        }
 
         $topic = Topic::where('article_id', $id)->first();
 
