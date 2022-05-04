@@ -39,7 +39,7 @@
 <p>{{ $data->isi }}</p>
 
 
-<a href='/like/{{ $data->id }}' >{{ $data->total_like}}</a>
+<a id="like" href='/like/{{ $data->id }}' >{{ $data->total_like}}</a>
 
 <br>
 
@@ -50,6 +50,5 @@
     <input type="text" name="komentar" id="komentar" placeholder="comments">
     <input type="submit" value="kirim">
 </form>
-
 
 @endauth

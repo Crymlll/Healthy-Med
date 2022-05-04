@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [HomeController::class, 'index'])->middleware('auth');
+Route::get('/api/articles', [HomeController::class, 'fetch'])->middleware('auth');
 
 Route::get('/login', [UserController::class, 'loginView'])->name('loginrollback')->middleware('guest'); //cek di middleware.authenticate
 Route::post('/login', [UserController::class, 'loginLauncher']);

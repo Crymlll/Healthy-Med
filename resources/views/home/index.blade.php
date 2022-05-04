@@ -80,10 +80,15 @@
 	<a href="#clients">Yoga</a>
 	<a href="#contact">Run</a>
   </div>
-    @foreach ($data as $item)
-    <div class="berita">
-		{{-- <p>Creator : {{ $item->author->name }}</p> ini gabisa bang  --}}
-        {{-- <p ><b>{{ $item->topic }}</b></p> --}}
+
+  <div class="beritaList">
+
+  </div>
+
+    {{-- @foreach ($data as $item)
+    <div class="berita-box">
+		<p>Creator : {{ $item->author->name }}</p> ini gabisa bang 
+        <p ><b>{{ $item->topic }}</b></p>
 		
         <h4>{{  $item->judul  }}</h4>
         <p id="isi">{{ Str::limit($item->isi, 450) }}</p>
@@ -91,7 +96,7 @@
 		<p>{{ $item->gambar }}</p>
         <div class="keterangan">
 			<a href='/like/{{ $item->id }}' class="liked"><i onclick="myFunction(this)" class="fa fa-heart-o"></i> {{ $item->total_like }}</a>
-			{{-- <a href='/like/{{ $item->id }}' class="liked"><i onclick="myFunction(this)" class="material-icons">&#xe87e;</i> {{ $item->total_like }}</a> --}}
+			<a href='/like/{{ $item->id }}' class="liked"><i onclick="myFunction(this)" class="material-icons">&#xe87e;</i> {{ $item->total_like }}</a>
                 <p>Waktu : {{ $item->created_at->format('d-m-Y H:i:s') }}</p>
         </div>
 		
@@ -100,12 +105,69 @@
 				x.classList.toggle("fa-heart");
 			}
 		</script>
-        {{-- <p>{{ $item->status_like }}</p> --}}
+        <p>{{ $item->status_like }}</p>
     </div>
+	@endforeach --}}
 	
-@endforeach
 @endauth
 </div>
+	
+<script>
+	$(document).ready(function(){
+		$.ajax({
+			url: 'api/articles',
+			type: 'GET',
+			dataType: 'json',
+			success: function(data){
+
+				// console.log(data.data)
+				var beritaList = document.getElementsByClassName('beritaList')[0]
+				data.data.forEach(element => {
+					console.log(element)
+					
+					
+					var berita_box = document.createElement('div')
+					berita_box.className = 'berita'
+					
+					var img = document.createElement('img')
+					img.src = "{{ URL::to('/') }}/gambar/"+element.gambar
+					img.width = '400'
+					berita_box.appendChild(img)
+					
+					var creator = document.createElement('p')
+					creator.innerHTML = 'Creator : ' + element.author.name
+					berita_box.appendChild(creator)
+
+					var judul = document.createElement('h4')
+					judul.innerHTML = element.judul
+					berita_box.appendChild(judul)
+
+					var selengkapnya = document.createElement('a')
+					selengkapnya.innerHTML = 'Selengkapnya'
+					selengkapnya.href = '/article/id/'+element.id
+					berita_box.appendChild(selengkapnya)
+
+					var isi = document.createElement('p')
+					isi.innerHTML = element.isi
+					berita_box.appendChild(isi)
+
+					var like = document.createElement('a')
+					like.innerHTML = element.total_like
+					like.href = '/like/'+element.id
+					berita_box.appendChild(like)
+
+					
+
+
+					beritaList.appendChild(berita_box)
+				});
+
+			}
+		});
+	})
+
+</script>
+
 
 {{-- <div class="popup">
     <div class="popup-content">
