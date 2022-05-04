@@ -45,6 +45,12 @@
 
 {{-- Disini ada total komentar --}}
 
+@if($komentar)
+    @foreach($komen as $komentar)
+        <p>{{ $komen->isi }}</p>
+    @endforeach
+@endif
+
 <form id="form" action="/komentar/send/{{ $data->id }}">
     @csrf
     <input type="text" name="komentar" id="komentar" placeholder="comments">

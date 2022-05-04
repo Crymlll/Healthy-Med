@@ -7,6 +7,7 @@ use App\Models\Article;
 use App\Models\Topic;
 use App\Models\Like;
 use App\Models\User;
+use App\Models\komentar;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -84,6 +85,7 @@ class ArticleController extends Controller
         $data = Article::find($id);
         $getEx = $data->gambar;
         $ext = substr($getEx, strpos($getEx, ".") + 1);
+        $komentar = Komentar::where('user_id', $id)->get();
 
         $topic = Topic::where('article_id', $id)->first();
 
@@ -95,7 +97,7 @@ class ArticleController extends Controller
         
         $data->total_like = $like;
         
-        return view('article.detail', compact('data','title','ext', 'topic',));
+        return view('article.detail', compact('data','title','ext', 'topic', 'komentar'));  
     }
 
     public function edit($id)
