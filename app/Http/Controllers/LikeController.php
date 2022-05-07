@@ -42,6 +42,7 @@ class LikeController extends Controller
         $article = [];
         foreach ($likes as $like) {
             $temp = Article::where('id', $like->article_id)->first();
+            $temp->author = User::find($temp->user_id);
             array_push($article, $temp);
         }
         
