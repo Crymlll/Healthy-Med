@@ -11,14 +11,10 @@ class Komentar extends Model
 
     protected $table = 'komentars';
 
-<<<<<<< Updated upstream
-    protected $fillable = ['artikel_id','user_id','komentar'];
 
-=======
     protected $fillable = ['article_id','user_id','komentar'];
     
     protected $guarded=['id'];
->>>>>>> Stashed changes
 
     public function users(){
         $this->belongsTo(User::class, 'user_id');
