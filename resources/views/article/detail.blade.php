@@ -1,24 +1,10 @@
 @auth
 
 
-@if ($topic->healthy === 1)
-    <p>Healthy</p>
-@endif
-@if ($topic->sports === 1)
-    <p>Sports</p>
-@endif
-@if ($topic->politics === 1)
-    <p>politics</p>
-@endif
-@if ($topic->entertainment === 1)
-    <p>entertainment</p>
-@endif
-@if ($topic->technology === 1)
-    <p>technology</p>
-@endif
-@if ($topic->science === 1)
-    <p>science</p>
-@endif
+<abbr>{{ $data->topic }}</abbr>
+<b>{{ $data->user_id }}</b>
+<b>{{ $data->isi }}</b>
+<aside>{{ $data->judul }}</aside>
 
 
 @if(auth()->user()->id === $data->user_id)
@@ -46,9 +32,11 @@
 {{-- Disini ada total komentar --}}
 
 @if($komentar)
-    @foreach($komen as $komentar)
+    @foreach($komentar as $komen)
+    <div>
         <p>{{ $komen->userNama }}</p>
-        <p>{{ $komen->isi }}</p>
+        <p>{{ $komen->komentar }}</p>
+    </div>
     @endforeach
 @endif
 
