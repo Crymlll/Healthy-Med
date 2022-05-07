@@ -29,7 +29,7 @@
 		</form>
 		<div class="navbar-nav ml-auto">
 			<a href="#" class="nav-item nav-link active"><i class="material-icons">&#xe88a;</i><span>Home</span></a>
-			<a href="#" class="nav-item nav-link"><i class="material-icons">&#xe87d;</i><span>Liked</span></a>	
+			<a href="/liked" class="nav-item nav-link"><i class="material-icons">&#xe87d;</i><span>Liked</span></a>	
 			<a href="#" class="nav-item nav-link"><i class="material-icons">&#xe7f4;</i><span>Notifications</span></a>
 			<div class="nav-item dropdown">
 				<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="{{asset('storage/images/img.jpg')}}"  class="avatar" alt="Avatar"><b> {{auth()->user()->name}} <b class="caret"></b></a>
