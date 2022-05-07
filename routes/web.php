@@ -36,3 +36,4 @@ Route::get('/article/delete/id/{id}', [ArticleController::class, 'destroy'])->mi
 Route::get('/like/{article_id}', [LikeController::class, 'like'])->middleware('auth');
 
 Route::get('/komentar/send/{article_id}', [ArticleController::class, 'komentar'])->middleware('auth');
+Route::get('/api/articles/search/{id}', [HomeController::class, 'search'])->middleware('auth');
