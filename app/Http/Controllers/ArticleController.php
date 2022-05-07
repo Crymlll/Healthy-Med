@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Article;
 use App\Models\Like;
+<<<<<<< Updated upstream
+=======
+use App\Models\User;
+use App\Models\Komentar;
+>>>>>>> Stashed changes
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -130,7 +135,19 @@ class ArticleController extends Controller
         return view('search', compact('data','title','search_text'));
     }
 
-    // public function komentar(){
-    //     $artikel = Article::
-    // }
+    public function komentar(Request $request, $article_id){
+        $request->validate([
+            'komentar' => 'required',
+        ]);
+
+        $data_komentar = array(
+            'article_id' => $article_id,
+            'user_id' => Auth::user()->id,
+            'komentar' => $request->komentar,
+        );
+
+        $savedData = Komentar::create($data_komentar);
+
+        return back();
+    }
 }
