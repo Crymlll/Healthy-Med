@@ -85,7 +85,7 @@ class ArticleController extends Controller
         $data = Article::find($id);
         $getEx = $data->gambar;
         $ext = substr($getEx, strpos($getEx, ".") + 1);
-        $komentar = Komentar::where('user_id', $id)->get();
+        $komentar = Komentar::where('article_id', $id)->get();
         for ($i=0; $i < count($komentar); $i++) { 
             $komentar[$i]->user = User::find($komentar[$i]->user_id);
             $komentar[$i]->userNama = $komentar[$i]->user->name;
@@ -227,4 +227,36 @@ class ArticleController extends Controller
 
         return back();
     }
+
+    public function get_myarticle(){
+        $user_id = Auth::user()->id;
+        $data = Article::where('user_id',$user_id)->simplepaginate(5);
+        // $like = Like::where('article_id', $data->id)->count();
+        foreach($data as $d){
+            $like = Like::where('article_id', $d->id)->count();
+            $d->total_like = $like;
+            $likeCheck = Like::where('article_id', $d->id)->where('user_id',auth()->user()->id)->first();
+            if($likeCheck){
+                $d->status_like = "Sudah like";
+            }
+            else{
+                $d->status_like = "Belum like";
+            }
+        
+        }
+        
+        return response()->json([
+            'success' => 'artikel user',
+            'data' => $data
+        ]);
+    }
+
+    public function my_article(){
+        // dd($user_id);
+        $user_id = Auth::user()->id;
+        // $compactData = array('user_id');
+        // dd($user_id);
+        return view('user.index',compact('user_id'));
+    }
+
 }

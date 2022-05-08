@@ -28,9 +28,8 @@
 			</div>
 		</form>
 		<div class="navbar-nav ml-auto">
-			<a href="#" class="nav-item nav-link active"><i class="material-icons">&#xe88a;</i><span>Home</span></a>
+			<a href="/" class="nav-item nav-link active"><i class="material-icons">&#xe88a;</i><span>Home</span></a>
 			<a href="/liked" class="nav-item nav-link"><i class="material-icons">&#xe87d;</i><span>Liked</span></a>	
-			<a href="/my_article" class="nav-item nav-link"><i class="material-icons">&#xe7f4;</i><span>My Article</span></a>
 			<div class="nav-item dropdown">
 				<a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="{{asset('storage/images/img.jpg')}}"  class="avatar" alt="Avatar"><b> {{auth()->user()->name}} <b class="caret"></b></a>
 				<div class="dropdown-menu">
@@ -51,26 +50,11 @@
 <body>
 <div class="container">
 	@auth
-<div class="card">
-{{-- <p>{{ auth()->user()->id }}</p>
-<p>{{ auth()->user()->email }}</p> --}}
-<div class="text">
-	<img src="{{asset('storage/images/img.jpg')}}" class="avatar" alt="Avatar">
-	<a href="/article/create">
-	{{-- <a class="openBtn" href="javascript:void(0)"> --}}
-	<button>
-		What do you think right now?
-	</button>
-	</a>
-	{{-- <a href="/article/create">buat artikel</a> --}}
-</div>
-</div>
 <div class="sort">
 	<button>
 		<i  class="material-icons">&#xe80e;</i>
-		 Newest
+		 Your Article
 	</button>
-	{{-- <button> Gatau</button> --}}
 </div>
 
 <div class="sidenav">
@@ -89,7 +73,7 @@
 
   </div>
 
-    <!-- {{-- @foreach ($data as $item)
+    {{-- @foreach ($data as $item)
     <div class="berita-box">
 		<p>Creator : {{ $item->author->name }}</p> ini gabisa bang 
         <p ><b>{{ $item->topic }}</b></p>
@@ -111,26 +95,24 @@
 		</script>
         <p>{{ $item->status_like }}</p>
     </div>
-	@endforeach --}} -->
-	
+	@endforeach --}}
+
 @endauth
 </div>
 	
-<script>
-
-$(document).ready(function(){
-		$.ajax({
-			url: 'api/articles',
-			type: 'GET',
-			dataType: 'json',
-			success: function(data){
-
-				// console.log(data.data)
-				var beritaList = document.getElementsByClassName('beritaList')[0]
-				data.data.forEach(element => {
-					// console.log(element)
-					
-					
+    <script>
+        var dataArtikel;
+        $(document).ready(function(){
+            $.ajax({
+			    url: 'api/get_myarticle',
+			    type: 'GET',
+			    dataType: 'json',
+			    success: function(data){
+                    var beritaList = document.getElementsByClassName('beritaList')[0]
+				    beritaList.innerHTML = ''
+                    console.log(data.data.data)
+                    data.data.data.forEach(element => {
+										
 					var berita_box = document.createElement('div')
 					berita_box.className = 'berita'
 					
@@ -139,10 +121,6 @@ $(document).ready(function(){
 					img.width = '400'
 					berita_box.appendChild(img)
 					
-					var creator = document.createElement('p')
-					creator.innerHTML = 'Creator : ' + element.author.name
-					berita_box.appendChild(creator)
-
 					var judul = document.createElement('h4')
 					judul.innerHTML = element.judul
 					berita_box.appendChild(judul)
@@ -163,110 +141,10 @@ $(document).ready(function(){
 
 					beritaList.appendChild(berita_box)
 				});
+                }
+		    });
+        })
 
-			}
-		});
-
-		$('#search').keyup(function(){
-			var search = $(this).val()
-			var url = 'api/articles/search/'+search
-			var cekSearch = document.getElementById('hasil_search')
-			if(search == ''){
-			 	url = 'api/articles'
-				cekSearch.innerHTML = ""
-			}else{
-				url = 'api/articles/search/'+search
-				cekSearch.innerHTML = "Hasil Search"
-				console.log(url)
-			}
-			$.ajax({
-			url: url,
-			type: 'GET',
-			dataType: 'json',
-			success: function(data){
-
-				// console.log(data.data)
-				var beritaList = document.getElementsByClassName('beritaList')[0]
-				beritaList.innerHTML = ''
-				data.data.forEach(element => {
-					console.log(element)
-					
-					
-					var berita_box = document.createElement('div')
-					berita_box.className = 'berita'
-					
-					var img = document.createElement('img')
-					img.src = "{{ URL::to('/') }}/gambar/"+element.gambar
-					img.width = '400'
-					berita_box.appendChild(img)
-					
-					var creator = document.createElement('p')
-					creator.innerHTML = 'Creator : ' + element.author.name
-					berita_box.appendChild(creator)
-
-					var judul = document.createElement('h4')
-					judul.innerHTML = element.judul
-					berita_box.appendChild(judul)
-
-					var selengkapnya = document.createElement('a')
-					selengkapnya.innerHTML = 'Selengkapnya'
-					selengkapnya.href = '/article/id/'+element.id
-					berita_box.appendChild(selengkapnya)
-
-					var isi = document.createElement('p')
-					isi.innerHTML = element.isi
-					berita_box.appendChild(isi)
-
-					var like = document.createElement('a')
-					like.innerHTML = element.total_like
-					like.href = '/like/'+element.id
-					berita_box.appendChild(like)
-
-					beritaList.appendChild(berita_box)
-				});
-
-			}
-		});
-				
-		})
-	})
-
-
-</script>
-
-
-{{-- <div class="popup">
-    <div class="popup-content">
-      <h2>Popup Title</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum.</p>
-      <a class="closeBtn" href="javascript:void(0)">x</a>
-    </div>
-  </div>
-  <script type="text/javascript">
-	$(document).ready(function () {
-   
-	  // Open Popup
-	  $('.openBtn').on('click', function () {
-		$('.popup').fadeIn(300);
-	  });
-   
-	  // Close Popup
-	  $('.closeBtn').on('click', function () {
-		$('.popup').fadeOut(300);
-	  });
-   
-	  // Close Popup when Click outside
-	  $('.popup').on('click', function () {
-		$('.popup').fadeOut(300);
-	  }).children().click(function () {
-		return false;
-	  });
-   
-	});
-  </script> --}}
+    </script>
 </body>
 </html>

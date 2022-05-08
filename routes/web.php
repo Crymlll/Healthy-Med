@@ -33,6 +33,8 @@ Route::get('/article/id/{id}', [ArticleController::class, 'show'])->middleware('
 Route::get('/article/edit/id/{id}', [ArticleController::class, 'edit'])->middleware('auth');
 Route::post('/article/edit/id/{id}', [ArticleController::class, 'update'])->middleware('auth');
 Route::get('/article/delete/id/{id}', [ArticleController::class, 'destroy'])->middleware('auth');
+Route::get('/my_article', [ArticleController::class, 'my_article'])->middleware('auth');
+Route::get('/api/get_myarticle', [ArticleController::class, 'get_myarticle'])->middleware('auth');
 
 Route::get('/like/{article_id}', [LikeController::class, 'like'])->middleware('auth');
 Route::get('/liked', [LikeController::class, 'show'])->middleware('auth');
