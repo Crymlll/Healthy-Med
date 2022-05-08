@@ -44,6 +44,7 @@ class LikeController extends Controller
         foreach ($likes as $like) {
             $temp = Article::where('id', $like->article_id)->first();
             $temp->author = User::find($temp->user_id);
+            $temp->total_like = Like::where('article_id', $temp->id)->count();
             array_push($article, $temp);
         }
         

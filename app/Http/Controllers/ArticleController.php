@@ -49,34 +49,26 @@ class ArticleController extends Controller
 
         $data_topic = array(
             'article_id' => $savedData->id,
-            'healthy' => $request->has('healthy') ? 1 : 0,
+            'food' => $request->has('food') ? 1 : 0,
             'sports' => $request->has('sports') ? 1 : 0,
-            'politics' => $request->has('politics') ? 1 : 0,
-            'entertainment' => $request->has('entertainment') ? 1 : 0,
-            'technology' => $request->has('technology') ? 1 : 0,
-            'science' => $request->has('science') ? 1 : 0,
+            'yoga' => $request->has('yoga') ? 1 : 0,
+            'therapy' => $request->has('therapy') ? 1 : 0,
+            'workout' => $request->has('workout') ? 1 : 0,
+            'nature' => $request->has('nature') ? 1 : 0,
+            'diet' => $request->has('diet') ? 1 : 0,
+            'lifestyle' => $request->has('lifestyle') ? 1 : 0,
+            'psychology' => $request->has('psychology') ? 1 : 0,
         );
-
-        // $data_topic = array(
-        //     'article_id' => $savedData->id,
-        //     'healthy' => 0,
-        //     'sport' => 1,
-        //     'politics' => 1,
-        //     'entertainment' => 0,
-        //     'technology' => 1,
-        //     'science' => 1, 
-        // );
-        // dd($topic);
 
         $savedTopic = Topic::create($data_topic);
 
-        return response()->json([
-            'success' => 'data berhasil disimpan',
-            'data' => $savedData,
-            'topic' => $savedTopic
-        ]);
+        // return response()->json([
+        //     'success' => 'data berhasil disimpan',
+        //     'data' => $savedData,
+        //     'topic' => $savedTopic
+        // ]);
 
-        // return redirect('/')->with('success', 'data has been created');
+        return redirect('/')->with('success', 'data has been created');
     }
 
     public function show($id)
@@ -153,12 +145,15 @@ class ArticleController extends Controller
 
             $data_topic = array(
                 // 'article_id' => $id,
-                'healthy' => $request->has('healthy') ? 1 : 0,
+                'food' => $request->has('food') ? 1 : 0,
                 'sports' => $request->has('sports') ? 1 : 0,
-                'politics' => $request->has('politics') ? 1 : 0,
-                'entertainment' => $request->has('entertainment') ? 1 : 0,
-                'technology' => $request->has('technology') ? 1 : 0,
-                'science' => $request->has('science') ? 1 : 0,
+                'yoga' => $request->has('yoga') ? 1 : 0,
+                'therapy' => $request->has('therapy') ? 1 : 0,
+                'workout' => $request->has('workout') ? 1 : 0,
+                'nature' => $request->has('nature') ? 1 : 0,
+                'diet' => $request->has('diet') ? 1 : 0,
+                'lifestyle' => $request->has('lifestyle') ? 1 : 0,
+                'psychology' => $request->has('psychology') ? 1 : 0,
             );
 
     
@@ -170,13 +165,14 @@ class ArticleController extends Controller
             $topic->update($data_topic);
             
 
-            return response()->json([
-                'success' => 'data berhasil diupdate',
-                'data' => $data_article,
-                'topic' => $data_topic
-            ]);
-    
-            // return redirect('/preview/'.$id);
+            // return response()->json([
+            //     'success' => 'data berhasil diupdate',
+            //     'data' => $data_article,
+            //     'topic' => $data_topic
+            // ]);
+
+            return redirect('/article/edit/id/'.$id)->with('success', 'data has been updated');
+
         }else{
             return redirect('/')->with('error', 'data has been updated');
         }
@@ -260,3 +256,4 @@ class ArticleController extends Controller
     }
 
 }
+
