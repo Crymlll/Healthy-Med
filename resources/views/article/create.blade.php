@@ -44,12 +44,15 @@
         @csrf
         <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
         <div class="form-topic">
-            <input class="form-check-input" type="checkbox" name="healthy" value="1"><label class="form-check-label" for="healthy">Healthy</label>
+            <input class="form-check-input" type="checkbox" name="food" value="1"><label class="form-check-label" for="food">Food</label>
             <input class="form-check-input" type="checkbox" name="sports" value="1"><label class="form-check-label" for="sports">Sports</label>
-            <input class="form-check-input" type="checkbox" name="politics" value="1"><label class="form-check-label" for="politics">Politics</label>
-            <input class="form-check-input" type="checkbox" name="entertainment" value="1"><label class="form-check-label" for="entertainment">Entertainment</label>
-            <input class="form-check-input" type="checkbox" name="technology" value="1"><label class="form-check-label" for="technology">Technology</label>
-            <input class="form-check-input" type="checkbox" name="science" value="1"><label class="form-check-label" for="science">Science</label>
+            <input class="form-check-input" type="checkbox" name="yoga" value="1"><label class="form-check-label" for="yoga">Yoga</label>
+            <input class="form-check-input" type="checkbox" name="therapy" value="1"><label class="form-check-label" for="therapy">Therapy</label>
+            <input class="form-check-input" type="checkbox" name="workout" value="1"><label class="form-check-label" for="workout">Workout</label>
+            <input class="form-check-input" type="checkbox" name="nature" value="1"><label class="form-check-label" for="nature">Nature</label>
+            <input class="form-check-input" type="checkbox" name="diet" value="1"><label class="form-check-label" for="diet">Diet</label>
+            <input class="form-check-input" type="checkbox" name="lifestyle" value="1"><label class="form-check-label" for="lifestyle">Lifestyle</label>
+            <input class="form-check-input" type="checkbox" name="psychology" value="1"><label class="form-check-label" for="psychology">Psychology</label>
         </div>
 
         <div class="judul">

@@ -75,10 +75,15 @@
 
 <div class="sidenav">
 	
-	<a href="#about">Healthy lifestyle</a>
-	<a href="#services">Science is fum</a>
-	<a href="#clients">Yoga</a>
-	<a href="#contact">Run</a>
+	<a href="/topic/food">Food</a>
+	<a href="/topic/sports">Sports</a>
+	<a href="/topic/yoga">Yoga</a>
+	<a href="/topic/therapy">Therapy</a>
+	<a href="/topic/workout">Workout</a>
+	<a href="/topic/nature">Nature</a>
+	<a href="/topic/diet">Diet</a>
+	<a href="/topic/lifestyle">Lifestyle</a>
+	<a href="/topic/psychology">Psychology</a>
   </div>
 
   <div id="hasil_search">

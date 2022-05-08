@@ -1,10 +1,33 @@
 @auth
 
+@if ($topic->food === 1)
+    <p>Food</p>
+@endif
+@if ($topic->sports === 1)
+    <p>Sports</p>
+@endif
+@if ($topic->yoga === 1)
+    <p>yoga</p>
+@endif
+@if ($topic->therapy === 1)
+    <p>therapy</p>
+@endif
+@if ($topic->workout === 1)
+    <p>workout</p>
+@endif
+@if ($topic->nature === 1)
+    <p>nature</p>
+@endif
+@if ($topic->diet === 1)
+    <p>diet</p>
+@endif
+@if ($topic->lifestyle === 1)
+    <p>lifestyle</p>
+@endif
+@if ($topic->psychology === 1)
+    <p>psychology</p>
+@endif
 
-<abbr>{{ $data->topic }}</abbr>
-<b>{{ $data->user_id }}</b>
-<b>{{ $data->isi }}</b>
-<aside>{{ $data->judul }}</aside>
 
 
 @if(auth()->user()->id === $data->user_id)
