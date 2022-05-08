@@ -5,7 +5,7 @@
 <link rel="stylesheet" href={{asset('scss/create.css')}}>
 
 <nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-    <a href="#" class="navbar-brand"><i class="fa fa-med"></i>Healthy<b>Med</b></a>
+    <a href="/" class="navbar-brand"><i class="fa fa-med"></i>Healthy<b>Med</b></a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -20,7 +20,6 @@
         <div class="navbar-nav ml-auto">
             <a href="#" class="nav-item nav-link active"><i class="material-icons">&#xe88a;</i><span>Home</span></a>
             <a href="#" class="nav-item nav-link"><i class="material-icons">&#xe87d;</i><span>Liked</span></a>
-            <a href="#" class="nav-item nav-link"><i class="material-icons">&#xe7f4;</i><span>Notifications</span></a>
             <div class="nav-item dropdown">
                 <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="{{asset('storage/images/img.jpg')}}" class="avatar" alt="Avatar"><b> {{auth()->user()->name}} <b class="caret"></b></a>
                 <div class="dropdown-menu">
@@ -40,37 +39,54 @@
 
 
 <body>
-    <form id="form" method="POST" enctype="multipart/form-data">
-        @csrf
-        <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-        <div class="form-topic">
-            <input class="form-check-input" type="checkbox" name="healthy" value="1"><label class="form-check-label" for="healthy">Healthy</label>
-            <input class="form-check-input" type="checkbox" name="sports" value="1"><label class="form-check-label" for="sports">Sports</label>
-            <input class="form-check-input" type="checkbox" name="politics" value="1"><label class="form-check-label" for="politics">Politics</label>
-            <input class="form-check-input" type="checkbox" name="entertainment" value="1"><label class="form-check-label" for="entertainment">Entertainment</label>
-            <input class="form-check-input" type="checkbox" name="technology" value="1"><label class="form-check-label" for="technology">Technology</label>
-            <input class="form-check-input" type="checkbox" name="science" value="1"><label class="form-check-label" for="science">Science</label>
+    <div class="body-container">
+        <div class="sidenav">
+
+            <a href="/topic/food">Food</a>
+            <a href="/topic/sports">Sports</a>
+            <a href="/topic/yoga">Yoga</a>
+            <a href="/topic/therapy">Therapy</a>
+            <a href="/topic/workout">Workout</a>
+            <a href="/topic/nature">Nature</a>
+            <a href="/topic/diet">Diet</a>
+            <a href="/topic/lifestyle">Lifestyle</a>
+            <a href="/topic/psychology">Psychology</a>
         </div>
+        <form id="form" method="POST" enctype="multipart/form-data">
+            @csrf
+            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+            <div class="form-topic">
+                <input class="form-check-input" type="checkbox" name="food" value="1"><label class="form-check-label" for="food">Food</label>
+                <input class="form-check-input" type="checkbox" name="sports" value="1"><label class="form-check-label" for="sports">Sports</label>
+                <input class="form-check-input" type="checkbox" name="yoga" value="1"><label class="form-check-label" for="yoga">Yoga</label>
+                <input class="form-check-input" type="checkbox" name="therapy" value="1"><label class="form-check-label" for="therapy">Therapy</label>
+                <input class="form-check-input" type="checkbox" name="workout" value="1"><label class="form-check-label" for="workout">Workout</label>
+                <input class="form-check-input" type="checkbox" name="nature" value="1"><label class="form-check-label" for="nature">Nature</label>
+                <input class="form-check-input" type="checkbox" name="diet" value="1"><label class="form-check-label" for="diet">Diet</label>
+                <input class="form-check-input" type="checkbox" name="lifestyle" value="1"><label class="form-check-label" for="lifestyle">Lifestyle</label>
+                <input class="form-check-input" type="checkbox" name="psychology" value="1"><label class="form-check-label" for="psychology">Psychology</label>
+            </div>
 
-        <div class="judul">
-            <input id="judul" class="judul" type="text" placeholder="Judul" name="judul">
-            <div class="pesan"></div>
-        </div>
+            <div class="judul">
+                <input id="judul" class="judul" type="text" placeholder="Judul" name="judul">
+                <div class="pesan"></div>
+            </div>
 
-        <div class="kalimat">
-            <textarea id="isi" rows="25" cols="100" placeholder="isi" name="isi"></textarea>
-            <div class="pesan"></div>
-        </div>
-
-
-        <div class="gambar">
-            <input type="file" id="gambar" name="gambar">
-            <div class="pesan"></div>
-        </div>
+            <div class="kalimat">
+                <textarea id="isi" rows="20" cols="100" placeholder="isi" name="isi"></textarea>
+                <div class="pesan"></div>
+            </div>
 
 
-        <button class="btn btn-outline-danger" type="submit" class="tombol">Buat Laporan</button>
-    </form>
+            <div class="gambar">
+                <input type="file" id="gambar" name="gambar">
+                <div class="pesan"></div>
+            </div>
+
+
+            <button class="btn btn-outline-danger" type="submit" class="tombol">Buat Laporan</button>
+        </form>
+    </div>
 </body>
 
 @else

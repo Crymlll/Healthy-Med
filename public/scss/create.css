@@ -1,13 +1,20 @@
-
 .form-check-label {
   padding-left: 5;
- 
+
 }
 
-#form{
-  width: 80%;
-  padding-left: 20%;
-  padding-top: 8%;
+#form {
+  width: 100%;
+  margin: 0;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  padding: 20px 25px;
+  margin: 0 auto;
+  margin-top: 10px;
+  max-width: 800px;
+  z-index: 900;
 }
 
 .navbar {
@@ -189,4 +196,52 @@
   background-color: transparent;
   border: none;
   outline: none;
+}
+
+body {
+  background: #eeeeee;
+}
+
+.body-container {
+  padding: 18px;
+  margin-top: 55px;
+  height: auto;
+  margin: 54px;
+}
+
+.sidenav {
+  position: fixed;
+  z-index: 1;
+  top: 100;
+  overflow-x: hidden;
+  padding-top: 0px;
+  width: clamp(50px, 75%, 200px);
+}
+
+.sidenav a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  color: #818181;
+  display: block;
+}
+
+.sidenav a:hover {
+  background-color: #ffffff;
+  border-radius: 5px;
+}
+
+.judul {
+  width: 100%;
+  margin-top: 1%;
+  margin-bottom: 1%;
+}
+
+textarea {
+  width: 100%;
+}
+
+.gambar {
+  margin-bottom: 1%;
 }
