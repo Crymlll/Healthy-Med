@@ -1,57 +1,8 @@
+@extends('layouts.navbar')
+@section('content')
+
 @auth
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href={{asset('scss/create.css')}}>
-
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark">
-    <a href="/" class="navbar-brand"><i class="fa fa-med"></i>Healthy<b>Med</b></a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <!-- Collection of nav links, forms, and other content for toggling -->
-    <div id="navbarCollapse" class="collapse navbar-collapse justify-content-start">
-        <form class="navbar-form form-inline">
-            <div class="input-group search-box">
-                <input type="text" id="search" class="form-control" placeholder="Search here...">
-                <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-            </div>
-        </form>
-        <div class="navbar-nav ml-auto">
-            <a href="#" class="nav-item nav-link active"><i class="material-icons">&#xe88a;</i><span>Home</span></a>
-            <a href="#" class="nav-item nav-link"><i class="material-icons">&#xe87d;</i><span>Liked</span></a>
-            <div class="nav-item dropdown">
-                <a href="#" data-toggle="dropdown" class="nav-item nav-link dropdown-toggle user-action"><img src="{{asset('storage/images/img.jpg')}}" class="avatar" alt="Avatar"><b> {{auth()->user()->name}} <b class="caret"></b></a>
-                <div class="dropdown-menu">
-                    <a href="#" class="dropdown-item"><i class="fa fa-user-o"></i> Profile</a>
-                    <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
-                    <div class="divider dropdown-divider"></div>
-                    <form action="/logout" method="post">
-                        @csrf
-                        {{-- <button class="logout" type="submit"><i class="material-icons">&#xE8AC;</i>logout</button> --}}
-                        <button class="dropdown-item" type="submit"><i class="material-icons">&#xE8AC;</i> Logout</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-
 <body>
-    <div class="body-container">
-        <div class="sidenav">
-
-            <a href="/topic/food">Food</a>
-            <a href="/topic/sports">Sports</a>
-            <a href="/topic/yoga">Yoga</a>
-            <a href="/topic/therapy">Therapy</a>
-            <a href="/topic/workout">Workout</a>
-            <a href="/topic/nature">Nature</a>
-            <a href="/topic/diet">Diet</a>
-            <a href="/topic/lifestyle">Lifestyle</a>
-            <a href="/topic/psychology">Psychology</a>
-        </div>
         <form id="form" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
