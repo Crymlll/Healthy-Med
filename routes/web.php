@@ -29,6 +29,9 @@ Route::post('/logout', [UserController::class, 'logout']);
 Route::get('/register', [UserController::class, 'register'])->middleware('guest');
 Route::post('/register', [UserController::class, 'store']);
 
+Route::get('/profile', [UserController::class, 'profiledetail'])->middleware('auth');
+Route::post('/profile', [UserController::class, 'editprofile'])->middleware('auth');
+
 Route::get('/article/create', [ArticleController::class, 'create'])->middleware('auth');
 Route::post('/article/create', [ArticleController::class, 'store'])->middleware('auth');
 Route::get('/article/id/{id}', [ArticleController::class, 'show'])->middleware('auth');
