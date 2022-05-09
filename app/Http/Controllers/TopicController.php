@@ -24,8 +24,11 @@ class TopicController extends Controller
         // dd($article);
 
         // return response()->json($article);
-
-        return view('home.topic', compact('title', 'article'));
+        if(isset($article) == false){
+            return view('home.topic', compact('title'));
+        } else {
+            return view('home.topic', compact('title', 'article'));
+        }
     }
 
     public function fetch($topic)

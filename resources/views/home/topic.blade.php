@@ -51,19 +51,26 @@
       </div>
 
       <div class="beritaList">
-        @foreach ($article as $item)
-          <div class="berita">
-            <img src="{{ URL::to('/') }}/gambar/{{ $item->gambar }}" alt="{{ $item->gambar }}" width="400">
-            <p>{{ $item->creator->name }}</p>
-            <p>{{ $item->judul }}</p>
-            <p><a href='/article/id/{{ $item->id }}' >Selengkapnya</a></p>
-            <p>{{ $item->isi }}</p>
-            <div class="keterangan">
-                <a href='/like/{{ $item->id }}' class="liked"><i onclick="myFunction(this)" class="fa fa-heart-o"></i> {{ $item->total_like }}</a>
-                    <p>Waktu : {{ $item->created_at->format('d-m-Y H:i:s') }}</p>
-            </div> 
-          </div>
-            @endforeach
+            @if (isset($article) == true)
+                @foreach ($article as $item)
+                    <div class="berita">
+                        <img src="{{ URL::to('/') }}/gambar/{{ $item->gambar }}" alt="{{ $item->gambar }}" width="400">
+                        <p>{{ $item->creator->name }}</p>
+                        <p>{{ $item->judul }}</p>
+                        <p><a href='/article/id/{{ $item->id }}' >Selengkapnya</a></p>
+                        <p>{{ $item->isi }}</p>
+                        <div class="keterangan">
+                            <a href='/like/{{ $item->id }}' class="liked"><i onclick="myFunction(this)" class="fa fa-heart-o"></i> {{ $item->total_like }}</a>
+                                <p>Waktu : {{ $item->created_at->format('d-m-Y H:i:s') }}</p>
+                        </div> 
+                    </div>
+                @endforeach
+            @else
+                    <div class="berita">
+                        <p>Tidak ada data</p>
+                    </div>
+            @endif
+        
       </div>
       <script src="{{ URL::asset('js/jquery-3.6.0.min.js') }}"></script>
         
